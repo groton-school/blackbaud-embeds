@@ -1,0 +1,35 @@
+<!-- TODO update the checkboxes with unique names -->
+<label><input type="checkbox" name="test" /> Test</label>
+
+<script>
+  const cookies = document.cookie.split('; ');
+
+  const getCookie = (key, value) =>
+    cookies.reduce((prev, curr) => {
+      try {
+        const [ignore, result] = curr.match(new RegExp(`^${key}=(.*)$`));
+        if (result) {
+          return result;
+        }
+      } catch (error) {
+        // do nothing
+      }
+      return prev;
+    }, value);
+
+  const setCookie = (input, key) => {
+    document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(
+      input.checked
+    )}`;
+  };
+
+  const trackWithCookie = (key, value) => {
+    const input = document.querySelector(`[name="${key}"]`);
+    input.checked = getCookie(key, value) === 'true';
+    input.addEventListener('change', setCookie.bind(null, input, key));
+    return input.checked;
+  };
+
+  // TODO invoke trackWithCookie() for each tracked checkbox with the default checked setting
+  trackWithCookie('test', false);
+</script>

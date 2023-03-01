@@ -1,0 +1,12 @@
+<script>
+  const topicsButton = document.querySelector('.topic-back-btn');
+  topicsButton.innerText = '< Bulletin Board';
+  topicsButton.onclick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    window.location = location.href.replace(
+      /#topicdetail\/\d+\/(\d+)\/.*/,
+      '#communitypage/$1/bulletinboard'
+    );
+  };
+</script>

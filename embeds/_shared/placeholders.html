@@ -1,0 +1,17 @@
+<script>
+  // TODO: populate placeholders with selectors and values to replace selectors
+  const placeholders = {
+    '.school-year': (() => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const start = new Date(year, 9, 1);
+      return now < start ? year : year + 1;
+    })(),
+  };
+
+  for (selector in placeholders) {
+    Array.from(document.querySelectorAll(selector)).forEach(
+      (p) => (p.innerText = placeholders[selector])
+    );
+  }
+</script>

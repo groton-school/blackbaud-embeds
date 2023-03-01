@@ -1,0 +1,26 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@battis/prettier-config': github:battis/prettier-config
+
+devDependencies:
+  '@battis/prettier-config': github.com/battis/prettier-config/950588a63a39be9d79d45b4cfcd0027c0cb630b0_prettier@2.8.4
+
+packages:
+
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  github.com/battis/prettier-config/950588a63a39be9d79d45b4cfcd0027c0cb630b0_prettier@2.8.4:
+    resolution: {tarball: https://codeload.github.com/battis/prettier-config/tar.gz/950588a63a39be9d79d45b4cfcd0027c0cb630b0}
+    id: github.com/battis/prettier-config/950588a63a39be9d79d45b4cfcd0027c0cb630b0
+    name: '@battis/prettier-config'
+    version: 1.0.0
+    peerDependencies:
+      prettier: ^2.0
+    dependencies:
+      prettier: 2.8.4
+    dev: true

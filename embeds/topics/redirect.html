@@ -1,0 +1,8 @@
+<script>
+	Array.from(document.querySelectorAll('.sortContainer')).forEach(c => {
+		const match = c.innerText.match(/{{redirect:(.+)}}/);
+		if (match) {
+			document.location.href = match[1];
+		}
+	})
+</script>

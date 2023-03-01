@@ -1,0 +1,132 @@
+<script>
+  const Topics = {
+    _topics: null,
+    _groupID: null,
+
+    _getTopics: async () => {
+      if (!Topics._topics) {
+        Topics._groupID = /\#[a-z]+\/(\d+)\/.*/.exec(window.location.hash)[1];
+        const response = await fetch(
+          `https://${window.location.host}/api/datadirect/sectiontopicsget/${Topics._groupID}/?format=json&active=true&future=false&expired=false&sharedTopics=false`,
+          {
+            headers: {
+              requestverificationtoken: podiumApp.Data.RequestVerificationToken,
+            },
+            method: 'GET',
+            credentials: 'include',
+          }
+        );
+        const { done, value } = await response.body.getReader().read();
+        Topics._topics = JSON.parse(new TextDecoder().decode(value));
+      }
+      return Topics._topics;
+    },
+
+    search: async (query) => {
+      const topics = (await Topics._getTopics()).sort(
+        (a, b) => b.PublishDateTicks - a.PublishDateTicks // sort most recent first
+      );
+
+      const startOfWord = new RegExp('^(.*\\s)?' + query.toLowerCase() + '.*');
+      const byName = topics.filter((topic) =>
+        startOfWord.test(topic.Name.toLowerCase())
+      );
+      const byDescription = topics.filter((topic) =>
+        startOfWord.test((topic.Description || '').toLowerCase())
+      );
+
+      const blob = new RegExp('.*' + query.toLowerCase() + '.*');
+      const byBlob = topics.filter(
+        (topic) =>
+          blob.test(topic.Name.toLowerCase()) ||
+          blob.test((topic.Description || '').toLowerCase())
+      );
+
+      return [...new Set([...byName, ...byDescription, ...byBlob])];
+    },
+  };
+
+  function formatTopic({
+    Name,
+    Description,
+    ThumbFilename,
+    TopicID,
+    TopicIndexID,
+  }) {
+    // FIXME url breaks if section is different than class
+    return `<a class="topic" href="/app/faculty#topicdetail/${TopicID}/${
+      Topics._groupID
+    }/${Topics._groupID}/${TopicIndexID}/0/0">
+                    <img class="thumb" src="/ftpimages/${
+                      podiumApp.Data.SchoolContext.attributes.SchoolUrl
+                        .school_id
+                    }/topics/${ThumbFilename}" />
+                    <span class="name">${Name}</span>
+                    <span  class="description">${Description || ''}</span>
+                </a>`;
+  }
+
+  // FIXME debounce
+  function updateResults() {
+    Topics.search(document.querySelector('#topic-search .query').value).then(
+      (results) => {
+        document.querySelector('#topic-search .results').innerHTML = results
+          .map((topic) => formatTopic(topic))
+          .join('');
+      }
+    );
+  }
+</script>
+<style>
+  #topic-search label {
+    display: inline-block;
+  }
+  #topic-search .search {
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+  #topic-search .search label {
+    flex: 0 0 auto;
+  }
+  #topic-search .search .query {
+    flex: 1 0 auto;
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+  #topic-search .results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  #topic-search .results .topic {
+    display: block;
+    flex: 0 1 250px;
+    border: solid 0.5px lightgray;
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+  #topic-search .results .topic .thumb {
+    height: 5em;
+  }
+  #topic-search .results .topic .name {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+    display: block;
+    text-align: center;
+  }
+</style>
+<form id="topic-search">
+  <div class="search">
+    <label>Search</label>
+    <input type="text" class="query" onKeyUp="updateResults()" />
+  </div>
+  <div class="results"></div>
+</form>
+<script>
+  updateResults();
+</script>

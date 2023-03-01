@@ -1,0 +1,11 @@
+<script>
+  const expandLinksWhenLoaded = () => {
+    const button = document.querySelector('#link-show-all');
+    if (button) {
+      button.click();
+    } else {
+      setTimeout(expandLinksWhenLoaded, 1);
+    }
+  };
+  expandLinksWhenLoaded();
+</script>

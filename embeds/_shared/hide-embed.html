@@ -1,0 +1,8 @@
+<script>
+  const caption = '{{TODO:replace with caption}}';
+
+  const containers = Array.from(document.querySelectorAll('.sortContainer'));
+  containers
+    .filter((c) => c.innerText == caption)
+    .forEach((c) => (c.style.display = 'none'));
+</script>

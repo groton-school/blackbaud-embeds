@@ -1,0 +1,18 @@
+<script>
+  // TODO caption this as {{redirect:URL THAT YOU WANT TO REDIRECT TO}}
+  const override = new URLSearchParams(location.search).get('override');
+  Array.from(document.querySelectorAll('.bulletin.thumbnail')).forEach((c) => {
+    const match = c.innerText.match(/{{redirect:(.+)}}/);
+    if (match) {
+      if (!override) {
+        document.location.href = match[1];
+      } else {
+        alert(
+          'You would have been redirected to ' +
+            match[1] +
+            ' if the override URL parameter was not present'
+        );
+      }
+    }
+  });
+</script>
