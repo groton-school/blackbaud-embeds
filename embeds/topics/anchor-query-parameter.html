@@ -1,19 +1,23 @@
 <script>
-  <!-- FIXME: this seems not to be working at the moment -->
-  const anchor = new URLSearchParams(location.search).get('anchor');
-  if (anchor) {
-    const elt = document.querySelector(`#${anchor}`);
-    if (elt) {
-      const offset =
-        document.querySelector('#site-header-container').clientHeight +
-        document.querySelector('#site-nav-container').clientHeight;
-      window.scrollTo({
-        top:
-          elt.parentElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          offset,
-        behavior: 'smooth',
-      });
+  function scrollToAnchor(anchor) {
+    if (anchor) {
+      const elt = document.querySelector(`a[name="${anchor}"], #${anchor}`);
+      if (elt) {
+        const offset =
+          document.querySelector('#site-header-container').clientHeight +
+          document.querySelector('#site-nav-container').clientHeight;
+        window.scrollTo({
+          top:
+            elt.parentElement.getBoundingClientRect().top +
+            window.pageYOffset -
+            offset,
+          behavior: 'smooth',
+        });
+      } else {
+        setTimeout(() => scrollToAnchor(anchor));
+      }
     }
   }
+
+  scrollToAnchor(new URLSearchParams(location.search).get('anchor'));
 </script>
