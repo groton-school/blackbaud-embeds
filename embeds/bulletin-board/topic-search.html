@@ -76,6 +76,12 @@
       }
     );
   }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
 </script>
 <style>
   #topic-search label {
@@ -120,7 +126,7 @@
     text-align: center;
   }
 </style>
-<form id="topic-search">
+<form id="topic-search" onsubmit="handleSubmit()">
   <div class="search">
     <label>Search</label>
     <input type="text" class="query" onKeyUp="updateResults()" />
