@@ -1,35 +1,42 @@
 <!-- TODO update the checkboxes with unique names -->
-<label><input type="checkbox" name="test" /> Test</label>
+<label><input type="checkbox" name="test" data-stored /> Test</label>
 
 <script>
-  const cookies = document.cookie.split('; ');
+  const stored = JSON.parse(
+    window.localStorage.getItem(window.location.href) || '{}'
+  );
+  if (!stored['checkbox']) {
+    stored.checkbox = {};
+  }
 
-  const getCookie = (key, value) =>
-    cookies.reduce((prev, curr) => {
-      try {
-        const [ignore, result] = curr.match(new RegExp(`^${key}=(.*)$`));
-        if (result) {
-          return result;
-        }
-      } catch (error) {
-        // do nothing
+  function save(name, checked) {
+    if (!stored.checkbox[name]) {
+      stored.checkbox[name] = {};
+    }
+    stored.checkbox[name].checked = checked;
+    window.localStorage.setItem(window.location.href, JSON.stringify(stored));
+  }
+
+  function get(name) {
+    if (stored.checkbox[name]) {
+      return stored.checkbox[name].checked;
+    }
+    return false;
+  }
+
+  for (const name in stored.checkbox) {
+    if (name) {
+      const elt = document.querySelector(`input[data-stored][name="${name}"]`);
+      if (elt) {
+        elt.checked = stored.checkbox[name].checked;
       }
-      return prev;
-    }, value);
+    }
+  }
 
-  const setCookie = (input, key) => {
-    document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(
-      input.checked
-    )}`;
-  };
-
-  const trackWithCookie = (key, value) => {
-    const input = document.querySelector(`[name="${key}"]`);
-    input.checked = getCookie(key, value) === 'true';
-    input.addEventListener('change', setCookie.bind(null, input, key));
-    return input.checked;
-  };
-
-  // TODO invoke trackWithCookie() for each tracked checkbox with the default checked setting
-  trackWithCookie('test', false);
+  document.querySelectorAll('input[data-stored]').forEach((elt) => {
+    save(elt.name, elt.checked);
+    elt.addEventListener('change', (e) =>
+      save(e.target.name, e.target.checked)
+    );
+  });
 </script>
