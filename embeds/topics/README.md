@@ -4,16 +4,7 @@ Snippets that only work on a Topic page
 
 ## [anchor-query-parameter](./anchor-query-parameter.html)
 
-Standard URL anchors don't work on Blackbaud, because the page URLs are already built around an anchor (grr). But, this does allow you to link to a heading or some other anchored feature on the page by adding an `anchor` query parameter.
-
-In your content:
-
-```html
-<h2><a name="foo">Foo and Bar!</a></h2>
-<p>Lorem ipsum dolor, etc.</p>
-```
-
-And the URL to scroll to that header:
+Standard URL anchors don't work on Blackbaud, because the page URLs are already built around an anchor (grr). But, this does allow you to link to a heading or some other anchored feature on the page by adding an `anchor` query parameter:
 
 ```
 https://example.myschoolapp.com/path/to/page?anchor=foo#blackbaud-navigation-anchor
