@@ -2,12 +2,6 @@
 
 Snippets that can be used anywhere
 
-## [checkboxes-stored-as-cookies](./checkboxes-stored-as-cookies.html)
-
-Show a checkbox on a page that a student can check… that will stay checked for that student until they uncheck it (or switch browsers). Useful for self-maintained to do lists.
-
-Note that you will need to repeat the `<label><input…` line once for each checkbox, give each checkbox a unique name, and then, at the bottom of the snippet, add a `trackWithCookie(...` line for each checkbox using those exact same names.
-
 ## [google-analytics](./google-analytics.html)
 
 What it says on the tin. Track page views using Google analytics. You'll need to set up the Google Analytics yourself, and then get the measurement ID int the format `G-XXXXXXXXXX` from it to paste into the snippet.
@@ -31,3 +25,16 @@ Replace a placeholder on your page with dynamically-generated values.
 In the example in the snippet, I didn't want to have to remember to update the page with new dates every year, so I had the page look for everywhere I had put `<span class="school-year">{{year}}</span>` and replace it with the actual year in question (calculated based on the date the page is visited).
 
 (It's looking for that `class="school-year"` value, not the `{{year}}`, which is just a visual reminder on the page that I have placeholders that will be replaced.)
+
+## [remember-checkboxes](./remember-checkboxes.html)
+
+Show a checkbox on a page that a student can check… that will stay checked for that student until they uncheck it (or switch browsers). Useful for self-maintained to do lists.
+
+Note that you will need to include the `data-stored` attribute and a unique (to the page) `name` attribute for each checkbox:
+
+```html
+<label>
+  <input type="checkbox" name="unique" data-stored />
+  Click me! I'm unique. And I'll remember you!
+</label>
+```
