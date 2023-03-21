@@ -11,7 +11,7 @@ What it says on the tin. Track page views using Google analytics. You'll need to
 Hide HTML elements based on an annual date -- e.g. "before May 1" or "after November 12". Embed the script and then write HTML anywhere on the age that includes the `data-hide-until` or `data-hide-after` attributes in the element to be hidden. The date format can be anything that Javascript can parse, and is always assumed to be in the current year.
 
 ```html
-<div data-hide-until="may 14" data-hide-after="5/14">
+<div data-hide-until="mar 14" data-hide-after="3/14">
   I only appear on &pi; day!
 </div>
 ```
