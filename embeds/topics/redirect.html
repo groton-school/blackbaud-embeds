@@ -1,8 +1,9 @@
+<!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/topics#redirect -->
 <script>
-	Array.from(document.querySelectorAll('.sortContainer')).forEach(c => {
-		const match = c.innerText.match(/{{redirect:(.+)}}/);
-		if (match) {
-			document.location.href = match[1];
-		}
-	})
+  Array.from(document.querySelectorAll('.sortContainer')).forEach((c) => {
+    const match = c.innerText.match(/{{redirect:(.+)}}/);
+    if (match) {
+      document.location.href = match[1];
+    }
+  });
 </script>

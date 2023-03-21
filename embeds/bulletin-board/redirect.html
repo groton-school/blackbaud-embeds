@@ -1,5 +1,9 @@
+<!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/bulletin-board#redirect -->
 <script>
-  // TODO caption this as {{redirect:URL THAT YOU WANT TO REDIRECT TO}}
+  /*
+   * TODO caption this as {{redirect:URL THAT YOU WANT TO REDIRECT TO}}
+   */
+
   const override = new URLSearchParams(location.search).get('override');
   Array.from(document.querySelectorAll('.bulletin.thumbnail')).forEach((c) => {
     const match = c.innerText.match(/{{redirect:(.+)}}/);

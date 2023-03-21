@@ -4,7 +4,7 @@ A collection of handy snippets to embed in the Blackbaud LMS for "enhanced" func
 
 ### How to use
 
-All of the snippets are organized in the [embeds](./embeds) folder, saved in HTML files.
+All of the snippets are organized in the [embeds](./embeds#embed-snippets) folder, saved in HTML files.
 
 1. Copy the contents of the HTML file and…
 2. Paste it into an embed widget in Blackbaud, then…

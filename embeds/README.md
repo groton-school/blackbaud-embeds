@@ -1,15 +1,7 @@
-### Embeds
+### Embed Snippets
 
-```
-📁 embeds
- ├─📁 _shared
- │  └─📄 snippets to use anywhere
- │
- ├─📁 bulletin-board
- │  └─📄 snippets that only work on bulletin boards
- │
- └─📁 topics
-    └─📄 snippets that only work on topic pages
-```
+For snippets that work on Bulletin Board pages specifically, [click here](./bulletin-board#bulletin-board-snippets).
 
-Some snippets work anywhere. Some only work on specific pages. There's not a lot of error-checking, so pay attention and don't mix them up! (Don't worry -- they won't change any data… if they break, just won't work.)
+For snippets that work on Topics pages specifically, [click here](./topics#topics-snippets).
+
+For snippets that work on both Bulletin Boards and Topic pages, [click here](./_shared#shared-snippets).
