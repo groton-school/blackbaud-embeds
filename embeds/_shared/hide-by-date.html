@@ -1,6 +1,33 @@
+<style>
+  .hide-until,
+  .hide-after {
+    position: relative;
+    border: gray 1px dashed;
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+  .hide-until .note,
+  .hide-after .note {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    --margin: 4px;
+    margin: var(--margin);
+    color: gray;
+    font-weight: normal;
+    font-size: calc(var(--margin) * 3);
+    background: hsla(0, 100%, 100%, 0.5);
+    box-shadow: white 0 0 var(--margin);
+  }
+</style>
 <script>
   const now = new Date();
   const isFaculty = /faculty$/.test(window.location.pathname);
+  const dateFormat = [
+    'en-us',
+    { weekday: 'long', month: 'long', day: 'numeric' },
+  ];
 
   document.querySelectorAll('[data-hide-until]').forEach((elt) => {
     const hideUntil = new Date(elt.dataset['hideUntil']);
@@ -8,10 +35,12 @@
     if (hideUntil > now) {
       if (isFaculty) {
         const note = document.createElement('span');
+        elt.classList.add('hide-until');
+        note.classList.add('note');
         elt.append(note);
-        note.innerHTML = ` <span style="color: gray; font-weight: normal; font-size: smaller">Hidden from students until ${
-          hideUntil.getMonth() + 1
-        }/${hideUntil.getDate()}</span>`;
+        note.innerHTML = ` Hidden from students until ${hideUntil.toLocaleDateString(
+          ...dateFormat
+        )}`;
       } else {
         elt.style.display = 'none';
       }
@@ -24,10 +53,12 @@
     if (hideAfter < now) {
       if (isFaculty) {
         const note = document.createElement('span');
+        elt.classList.append('hide-after');
+        note.classList.add('note');
         elt.append(note);
-        note.innerHTML = ` <span style="color: gray; font-weight: normal; font-size: smaller">Hidden from students after ${
-          hideAfter.getMonth() + 1
-        }/${hideAfter.getDate()}</span>`;
+        note.innerHTML = ` Hidden from students after ${hideAfter.toLocaleDateString(
+          ...dateFormat
+        )}`;
       } else {
         elt.style.display = 'none';
       }
