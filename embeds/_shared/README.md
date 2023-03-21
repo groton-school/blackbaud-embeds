@@ -6,6 +6,18 @@ Snippets that can be used anywhere
 
 What it says on the tin. Track page views using Google analytics. You'll need to set up the Google Analytics yourself, and then get the measurement ID int the format `G-XXXXXXXXXX` from it to paste into the snippet.
 
+## [hide-by-date](./hide-by-date.html)
+
+Hide HTML elements based on an annual date -- e.g. "before May 1" or "after November 12". Embed the script and then write HTML anywhere on the age that includes the `data-hide-until` or `data-hide-after` attributes in the element to be hidden. The date format can be anything that Javascript can parse, and is always assumed to be in the current year.
+
+```html
+<div data-hide-until="may 14" data-hide-after="5/14">
+  I only appear on &pi; day!
+</div>
+```
+
+Faculty visitors to the page will see a note about when the element is visible.
+
 ## [hide-embed](./hide-embed.html)
 
 Looks for a widget on the page with the same caption as the `caption` variable, and hides it. Useful in combination with practically every other snippet.

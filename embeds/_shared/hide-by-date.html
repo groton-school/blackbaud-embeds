@@ -1,0 +1,36 @@
+<script>
+  const now = new Date();
+  const isFaculty = /faculty$/.test(window.location.pathname);
+
+  document.querySelectorAll('[data-hide-until]').forEach((elt) => {
+    const hideUntil = new Date(elt.dataset['hideUntil']);
+    hideUntil.setFullYear(now.getFullYear());
+    if (hideUntil > now) {
+      if (isFaculty) {
+        const note = document.createElement('span');
+        elt.append(note);
+        note.innerHTML = ` <span style="color: gray; font-weight: normal; font-size: smaller">Hidden from students until ${
+          hideUntil.getMonth() + 1
+        }/${hideUntil.getDate()}</span>`;
+      } else {
+        elt.style.display = 'none';
+      }
+    }
+  });
+
+  document.querySelectorAll('[data-hide-after]').forEach((elt) => {
+    const hideAfter = new Date(elt.dataset['hideAfter']);
+    hideAfter.setFullYear(now.getFullYear());
+    if (hideAfter < now) {
+      if (isFaculty) {
+        const note = document.createElement('span');
+        elt.append(note);
+        note.innerHTML = ` <span style="color: gray; font-weight: normal; font-size: smaller">Hidden from students after ${
+          hideAfter.getMonth() + 1
+        }/${hideAfter.getDate()}</span>`;
+      } else {
+        elt.style.display = 'none';
+      }
+    }
+  });
+</script>
