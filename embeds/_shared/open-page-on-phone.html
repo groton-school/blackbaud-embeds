@@ -1,0 +1,38 @@
+<!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/_shared#open-page-on-phone -->
+<canvas id="qrcode"></canvas>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"
+  integrity="sha512-PEhlWBZBrQL7flpJPY8lXx8tIN7HWX912GzGhFTDqA3iWFrakVH3lVHomCoU9BhfKzgxfEk6EG2C3xej+9srOQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script>
+  const caption = '{{TODO replace with actual embed caption}}';
+
+  function showQRCode(text) {
+    if (window.QRCode) {
+      QRCode.toCanvas(
+        document.getElementById('qrcode'),
+        text,
+        function (error) {
+          if (error) console.error(error);
+          console.log('success!');
+        }
+      );
+    } else {
+      setTimeout(showQRCode.bind(null, text), 5);
+    }
+  }
+
+  // detect touch interface (i.e. mobile)
+  if ('ontouchstart' in document.documentElement) {
+    // on mobile, hide widget
+    const containers = Array.from(document.querySelectorAll('.sortContainer'));
+    containers
+      .filter((c) => c.innerText == caption)
+      .forEach((c) => (c.style.display = 'none')); // FIXME not hidden on iPhone
+  } else {
+    // not mobile, show QR code
+    showQRCode(window.location.href);
+  }
+</script>

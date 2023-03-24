@@ -5,5 +5,5 @@
   const containers = Array.from(document.querySelectorAll('.sortContainer'));
   containers
     .filter((c) => c.innerText == caption)
-    .forEach((c) => (c.style.display = 'none'));
+    .forEach((c) => (c.style.display = 'none')); // FIXME `display: none` unreliable in iOS Safari
 </script>
