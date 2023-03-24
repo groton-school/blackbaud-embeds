@@ -42,6 +42,12 @@ Directions on how to write the image HTML are on the [Lightbox website](https://
 
 One useful trick is to create an already-expired topic in your course or group in which you put all the images you want to use in a Photos widget. This lets you host the images on Blackbaud (don't worry -- being expired won't make them inaccessible) and then you can copy the image URLs for your `<img>` tags in your HTML in other topics.
 
+## open-page-on-phone
+
+[Click here to get the `open-page-on-phone` snippet](./open-page-on-phone.html)
+
+Display a QR code on desktop browsers to let users quickly scan to open the same page on their phone. Useful to pages with links to phone apps.
+
 ## placeholders
 
 [Click here to get the `placeholders` snippet](./placeholders.html)
