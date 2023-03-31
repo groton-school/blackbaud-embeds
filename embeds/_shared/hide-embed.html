@@ -1,9 +1,17 @@
 <!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/_shared#hide-embed -->
+<style>
+  .hide-embed {
+    display: none;
+    visibility: none;
+    height: 0;
+    width: 0;
+  }
+</style>
 <script>
   const caption = '{{TODO:replace with caption}}';
 
   const containers = Array.from(document.querySelectorAll('.sortContainer'));
   containers
-    .filter((c) => c.innerText == caption)
-    .forEach((c) => (c.style.display = 'none')); // FIXME `display: none` unreliable in iOS Safari
+    .filter((c) => new RegExp(caption).test(c.innerText))
+    .forEach((c) => c.classList.add('hide-embed'));
 </script>

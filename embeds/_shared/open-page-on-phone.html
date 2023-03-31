@@ -1,4 +1,12 @@
 <!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/_shared#open-page-on-phone -->
+<style>
+  .hide-embed {
+    display: none;
+    visibility: none;
+    height: 0;
+    width: 0;
+  }
+</style>
 <canvas id="qrcode"></canvas>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"
@@ -29,8 +37,8 @@
     // on mobile, hide widget
     const containers = Array.from(document.querySelectorAll('.sortContainer'));
     containers
-      .filter((c) => c.innerText == caption)
-      .forEach((c) => (c.style.display = 'none')); // FIXME not hidden on iPhone
+      .filter((c) => new RegExp(caption).test(c.innerText))
+      .forEach((c) => c.classList.add('hide-embed'));
   } else {
     // not mobile, show QR code
     showQRCode(window.location.href);
