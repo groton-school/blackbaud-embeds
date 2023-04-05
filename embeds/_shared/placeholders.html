@@ -10,7 +10,7 @@
       const year = now.getFullYear();
       const start = new Date(year, 9, 1);
       return now < start ? year : year + 1;
-    })(),
+    })()
   };
 
   for (selector in placeholders) {

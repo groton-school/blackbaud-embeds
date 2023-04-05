@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "author": {"name":"Seth Battis","url":"https://github.com/groton-school"},
+  "author": {
+    "name": "Seth Battis",
+    "url": "https://github.com/groton-school"
+  },
   "license": "ISC",
   "devDependencies": {
+    "@battis/eslint-config": "github:battis/eslint-config",
     "@battis/prettier-config": "github:battis/prettier-config"
   },
-  "prettier": "@battis/prettier-config"
+  "prettier": "@battis/prettier-config",
+  "eslintConfig": {
+    "extends": "@battis/eslint-config"
+  }
 }

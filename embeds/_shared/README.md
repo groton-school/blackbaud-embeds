@@ -32,6 +32,12 @@ Faculty visitors to the page will see a note about when the element is visible.
 
 Looks for a widget on the page with the same caption as the `caption` variable, and hides it. Useful in combination with practically every other snippet.
 
+## install-phone-app
+
+[Click here to get the `install-phone-app` snippet](./install-phone-app.html)
+
+Adds a app store buttons for Apple App Store and Google Play Store ([when appropriate links are updated](./install-phone-app.html#L93-L99)). The snippet will do device detection so that only the app store link for the compatible app store is displayed on phones, and QR codes that can be scanned by phone cameras are displayed on desktop browsers.
+
 ## lightbox2
 
 [Click here to get the `lightbox2` snippet](./lightbox2.html)

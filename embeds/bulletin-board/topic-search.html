@@ -11,10 +11,10 @@
           `https://${window.location.host}/api/datadirect/sectiontopicsget/${Topics._groupID}/?format=json&active=true&future=false&expired=false&sharedTopics=false`,
           {
             headers: {
-              requestverificationtoken: podiumApp.Data.RequestVerificationToken,
+              requestverificationtoken: podiumApp.Data.RequestVerificationToken
             },
             method: 'GET',
-            credentials: 'include',
+            credentials: 'include'
           }
         );
         const { done, value } = await response.body.getReader().read();
@@ -44,7 +44,7 @@
       );
 
       return [...new Set([...byName, ...byDescription, ...byBlob])];
-    },
+    }
   };
 
   function formatTopic({
@@ -52,7 +52,7 @@
     Description,
     ThumbFilename,
     TopicID,
-    TopicIndexID,
+    TopicIndexID
   }) {
     // FIXME url breaks if section is different than class
     return `<a class="topic" href="/app/faculty#topicdetail/${TopicID}/${
