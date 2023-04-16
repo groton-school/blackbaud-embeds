@@ -13,7 +13,7 @@
     })()
   };
 
-  for (selector in placeholders) {
+  for (const selector in placeholders) {
     Array.from(document.querySelectorAll(selector)).forEach(
       (p) => (p.innerText = placeholders[selector])
     );

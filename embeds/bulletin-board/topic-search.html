@@ -1,12 +1,63 @@
 <!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/bulletin-board#topic-search -->
+<style>
+  #topic-search label {
+    display: inline-block;
+  }
+  #topic-search .search {
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+  #topic-search .search label {
+    flex: 0 0 auto;
+  }
+  #topic-search .search .query {
+    flex: 1 0 auto;
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+  #topic-search .results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  #topic-search .results .topic {
+    display: block;
+    flex: 0 1 250px;
+    border: solid 0.5px lightgray;
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+  #topic-search .results .topic .thumb {
+    height: 5em;
+  }
+  #topic-search .results .topic .name {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+    display: block;
+    text-align: center;
+  }
+</style>
+<form id="topic-search">
+  <div class="search">
+    <label>Search</label>
+    <input type="text" class="query" onKeyUp="updateResults()" />
+  </div>
+  <div class="results"></div>
+</form>
 <script>
+  /* global podiumApp */
   const Topics = {
     _topics: null,
     _groupID: null,
 
     _getTopics: async () => {
       if (!Topics._topics) {
-        Topics._groupID = /\#[a-z]+\/(\d+)\/.*/.exec(window.location.hash)[1];
+        Topics._groupID = /#[a-z]+\/(\d+)\/.*/.exec(window.location.hash)[1];
         const response = await fetch(
           `https://${window.location.host}/api/datadirect/sectiontopicsget/${Topics._groupID}/?format=json&active=true&future=false&expired=false&sharedTopics=false`,
           {
@@ -17,7 +68,7 @@
             credentials: 'include'
           }
         );
-        const { done, value } = await response.body.getReader().read();
+        const { value } = await response.body.getReader().read();
         Topics._topics = JSON.parse(new TextDecoder().decode(value));
       }
       return Topics._topics;
@@ -83,57 +134,9 @@
     e.stopPropagation();
     return false;
   }
-</script>
-<style>
-  #topic-search label {
-    display: inline-block;
-  }
-  #topic-search .search {
-    width: 100%;
-    margin-bottom: 1em;
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-  }
-  #topic-search .search label {
-    flex: 0 0 auto;
-  }
-  #topic-search .search .query {
-    flex: 1 0 auto;
-    padding: 0.25em;
-    border-radius: 0.25em;
-  }
-  #topic-search .results {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1em;
-  }
-  #topic-search .results .topic {
-    display: block;
-    flex: 0 1 250px;
-    border: solid 0.5px lightgray;
-    border-radius: 0.5em;
-    padding: 1em;
-  }
-  #topic-search .results .topic .thumb {
-    height: 5em;
-  }
-  #topic-search .results .topic .name {
-    font-size: larger;
-    font-weight: bold;
-    margin-bottom: 0.25em;
-    display: block;
-    text-align: center;
-  }
-</style>
-<form id="topic-search" onsubmit="handleSubmit()">
-  <div class="search">
-    <label>Search</label>
-    <input type="text" class="query" onKeyUp="updateResults()" />
-  </div>
-  <div class="results"></div>
-</form>
-<script>
+
+  document
+    .querySelector('#topic-search')
+    .addEventListener('submit', handleSubmit);
   updateResults();
 </script>
