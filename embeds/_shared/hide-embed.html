@@ -7,11 +7,6 @@
     width: 0;
   }
 </style>
-<script>
-  const caption = '{{TODO:replace with caption}}';
-
-  const containers = Array.from(document.querySelectorAll('.sortContainer'));
-  containers
-    .filter((c) => new RegExp(caption).test(c.innerText))
-    .forEach((c) => c.classList.add('hide-embed'));
+<script class="groton blackbaud-embed hide">
+  Array.from(document.querySelectorAll('div:has(> script.groton.blackbaud-embed.hide)')).map(div => div.classList.add('hide-embed'))
 </script>
