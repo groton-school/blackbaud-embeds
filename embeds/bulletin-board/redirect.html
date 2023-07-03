@@ -5,7 +5,7 @@
    */
 
   const override = new URLSearchParams(location.search).get('override');
-  Array.from(document.querySelectorAll('.bulletin.thumbnail, .contentContainer')).forEach((c) => {
+  Array.from(document.querySelectorAll('.bulletin.thumbnail')).forEach((c) => {
     const match = c.innerText.match(/{{redirect:(.+)}}/);
     if (match) {
       if (!override) {
