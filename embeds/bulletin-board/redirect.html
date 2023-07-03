@@ -5,10 +5,11 @@
    */
 
   const override = new URLSearchParams(location.search).get('override');
-  Array.from(document.querySelectorAll('.bulletin.thumbnail')).forEach((c) => {
+  Array.from(document.querySelectorAll('.bulletin.thumbnail, .contentContainer')).forEach((c) => {
     const match = c.innerText.match(/{{redirect:(.+)}}/);
     if (match) {
       if (!override) {
+        c.innerHTML = `If you are not immediately redirected, <a href="${match[1]}">click this link.</a>`;
         document.location.href = match[1];
       } else {
         alert(
