@@ -3,6 +3,7 @@
   Array.from(document.querySelectorAll('.sortContainer')).forEach((c) => {
     const match = c.innerText.match(/{{redirect:(.+)}}/);
     if (match) {
+      c.innerHTML = `If you are not immediately redirected, <a href="${match[1]}">click this link.</a>`;
       document.location.href = match[1];
     }
   });
