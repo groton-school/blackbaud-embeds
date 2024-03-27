@@ -1,12 +1,13 @@
 <!-- for more information about this snippet, visit https://github.com/groton-school/blackbaud-embeds/tree/main/embeds/bulletin-board#show-all-links -->
 <script>
-  const expandLinksWhenLoaded = () => {
+  if (!expandLinksWhenLoaded)
+    expandLinksWhenLoaded = () => {
     const button = document.querySelector('#link-show-all');
     if (button) {
       button.click();
     } else {
       setTimeout(expandLinksWhenLoaded, 1);
     }
-  };
+  };<a href="show-all-links.html">${0:Link}</a>
   expandLinksWhenLoaded();
 </script>
