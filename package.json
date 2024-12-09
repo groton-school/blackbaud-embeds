@@ -9,16 +9,10 @@
   },
   "license": "GPL-3.0",
   "devDependencies": {
-    "@battis/eslint-config": "latest",
-    "@battis/prettier-config": "latest"
+    "@battis/eslint-config": "^2.0.1",
+    "@battis/prettier-config": "^1.5.5",
+    "globals": "^15.13.0"
   },
   "prettier": "@battis/prettier-config",
-  "eslintConfig": {
-    "extends": "@battis/eslint-config",
-    "env": {
-      "browser": true,
-      "node": false
-    }
-  },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
