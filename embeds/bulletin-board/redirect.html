@@ -12,7 +12,7 @@
         c.innerHTML = `If you are not immediately redirected, <a href="${match[1]}">click this link.</a>`;
         document.location.href = match[1];
       } else {
-        alert(
+        console.log(
           'You would have been redirected to ' +
             match[1] +
             ' if the override URL parameter was not present'
