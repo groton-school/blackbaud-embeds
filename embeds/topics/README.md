@@ -30,6 +30,12 @@ Realistically, the back button does not actually take you back unless you are co
 
 Relinks the Back button on a topic page to take the user back to the Bulletin Board, rather than back to the topics page. (Perhaps more sensible, if you have built out a welcome/home page on the Bulletin Board and you have many, many topics).
 
+## hide-from-form
+
+[Click here to get the `hide-from-form` snippet](./hide-from-form.html)
+
+This may not be generally re-usable, but is a useful model to hang on to: on a page that has a series of links of the form `Second Form Course Selection`, `Third Form Course Selection`, etc. this will hide all the links that do _not_ apply to a particular student (while adding a label for faculty that the link will be hidden for students).
+
 ## redirect
 
 [Click here to get the `redirect` snippet](./redirect.html)

@@ -1,0 +1,39 @@
+<style>
+.sortContainer .comment {
+	font-weight: normal;
+	font-color: gray;
+	color: gray;
+	margin: 4px;
+	padding: 0.25em;
+    border: gray 1px dashed;
+	background: hsla(0, 100%, 100%, 0.5);
+    box-shadow: white 0 0 4px;
+}
+</style>
+<script>
+(async () => {
+  const isFaculty = /faculty$/.test(window.location.pathname);
+  const formMap = {
+    '30': 'Second Form',
+    '29': 'Third Form',
+    '28': 'Fourth Form',
+    '27': 'Fifth Form',
+    '26': 'Sixth Form'
+  };
+  const auth = 'BBAuthClient';
+  const email = (await window[auth].BBAuth.getDecodedToken()).email;
+  const gradYear = /[^0-9]+(\d+)@groton.org/i.exec(email);
+  const form = gradYear && gradYear[1] ? formMap[gradYear[1]] : undefined;
+  Array.from(document.querySelectorAll('.sortContainer:has(a)')).map(
+    (container) => {
+      if (/^\w+ Form Course Selection$/.test(container.innerText)) {
+        if (isFaculty) {
+          container.querySelector('a').insertAdjacentHTML('afterend','<span class="comment">Hidden from other forms</span>');
+        } else if (container.innerText !== `${form} Course Selection`) {
+          container.remove();
+        }
+      }
+    }
+  );
+})();
+</script>
